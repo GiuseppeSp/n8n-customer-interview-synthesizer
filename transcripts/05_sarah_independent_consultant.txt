@@ -1,0 +1,47 @@
+Hindsight User Interview
+Date: 2026-04-30
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: Sarah Whitfield, Independent PM Consultant (5 active clients, mostly Series A/B SaaS)
+Duration: ~10 min
+
+---
+
+Alex: Hi Sarah. Tell me about your work and how Hindsight fits.
+
+Sarah: I'm an independent PM consultant. I work with five clients at any given time, mostly Series A and B SaaS startups. I'm typically embedded one or two days a week with each one. So my calendar is basically context-switching all day. Monday is mostly Acme stuff, Tuesday is mostly Beta Corp, and so on.
+
+Alex: And how does Hindsight help?
+
+Sarah: It's load-bearing. Without it I'd have to take notes and produce summaries by hand for every client, and that's an hour I can't bill for. Hindsight's auto-summary plus the AI-drafted follow-up email is the single biggest productivity unlock I've had in years. The follow-up email is the only feature I'd actually pay double for.
+
+Alex: Tell me more about the email feature.
+
+Sarah: After a call ends, Hindsight gives me a draft email with the summary, action items, and next steps already written. I tweak it for tone, hit send. Saves me ten to fifteen minutes per meeting. Times twenty-five client meetings a week, that's three or four hours back. That's billable time. I bill by the hour, but I really earn by saving my clients time, and the AI email is doing both.
+
+Alex: Got it. What about pain points?
+
+Sarah: The big one is workspace separation. My Hindsight account treats every meeting as belonging to "Sarah Whitfield's org." But my meetings are for five different clients. There's no way to tag a meeting as "Acme" versus "Beta Corp." So when I'm searching, I get everything mixed together. Or worse, I almost shared an Acme strategy doc with Beta Corp once because the summary surfaced in the wrong context.
+
+Alex: That sounds risky.
+
+Sarah: It is. I now manually rename every meeting with the client prefix before doing anything. It's a workaround. What I want is workspaces or projects or tags I can filter by.
+
+Alex: Anything else?
+
+Sarah: Sharing. Right now if I want to share a summary with a client, I copy the markdown into an email or a Slack message. I'd love a "share link" that gave them a clean web view of just that summary, no Hindsight branding, no other meetings visible. White-label for consultants, basically.
+
+Alex: What integrations would you want?
+
+Sarah: Honestly, fewer than you'd think. Each of my clients uses different tools. Acme uses Linear, Beta uses Jira, Gamma uses Asana. I can't standardize. So heavy integrations don't help me, they help one client and break the rest. What I want is great copy-paste support, clean markdown, easy export, and that's it.
+
+Alex: What about action item extraction quality?
+
+Sarah: Good enough. Maybe seventy percent. The ones it misses are usually the ones that are framed as questions, like "should we look into X?" That's an action item but Hindsight doesn't flag it. Decisions framed as suggestions slip through too.
+
+Alex: What's the worst thing about Hindsight?
+
+Sarah: Lack of multi-client awareness. I'm not the only consultant in the world, but it feels like the product was designed for someone who works at one company. I'd love a multi-client mode where I can flip between client contexts cleanly.
+
+Alex: Thanks Sarah.
+
+Sarah: Thanks Alex.

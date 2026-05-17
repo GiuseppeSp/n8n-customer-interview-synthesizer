@@ -1,0 +1,198 @@
+transcript_id,transcript_filename,transcript_text,tldr,themes,jtbds,contradictions,quotes,recommendations
+01,01_maya_seed_startup.txt,"Hindsight User Interview
+Date: 2026-04-22
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: Maya Khan, Head of Product, Riverbend (Series Seed fintech, 4 people)
+Duration: ~12 min
+
+---
+
+Alex: Hi Maya, thanks for taking the time today. Can you give me a quick sense of what your week looks like and where Hindsight fits in?
+
+Maya: Sure. So I'm at Riverbend, we're four people total. I'm Head of Product but honestly I'm fourteen different roles in a trench coat. In a given week I'm doing two or three customer calls, one or two investor or partnership conversations, and then a bunch of internal stuff with the engineers. I use Hindsight on basically all of them. Started maybe six months ago when I realized I was forgetting what people told me by the end of the week.
+
+Alex: And what made you pick Hindsight specifically?
+
+Maya: Honestly, the free tier. We're seed-stage, every twenty dollars matters. Hindsight gave me five meetings a month for free, I tried it for two weeks, and after I forgot to take notes in one call and the auto-summary actually rescued me, I bought the Pro tier the same day.
+
+Alex: Got it. What does a typical use look like?
+
+Maya: Recording's on, I just talk. When the meeting ends I get a Slack ping like ten minutes later with the summary and action items. I usually skim it, copy the action items into Notion, and move on with my day. Maybe once a week I'll go back and search the transcript for something specific a customer said.
+
+Alex: How would you describe the quality of the summary?
+
+Maya: Eighty percent it's great. The structure is exactly what I want, decisions up top, action items at the bottom. But there's like a twenty percent where it just misses things. Like if a customer says ""if we end up doing X, then we'd probably need Y from you,"" it'll capture the X but miss that there's a conditional follow-up. And those conditionals are where all my actual work hides.
+
+Alex: Can you give me a recent example?
+
+Maya: Yeah, two weeks ago. Customer call. They said something like ""we'd love to pilot this, but it would only make sense if you can do the SOC 2 stuff by end of Q3."" Hindsight captured ""customer wants to pilot."" Did not capture the SOC 2 dependency. I almost emailed back saying ""great, let's start"" without realizing I'd just committed us to SOC 2 by September. Caught it because I happened to re-listen.
+
+Alex: Yikes. How do you work around that?
+
+Maya: I don't, really. I just don't fully trust the summaries on consequential calls anymore. Which kind of defeats the point. If the AI can't tell me what was decided, I might as well just listen to the recording again. So now I treat it as a draft I have to validate, which is faster than no notes but not as fast as I'd like.
+
+Alex: What other things bug you?
+
+Maya: The Notion integration is half-built. It dumps the summary into a page but doesn't tag, doesn't link to my customer database, doesn't update an existing customer record. So I'm copy-pasting a lot. Also, action items default to ""assigned to me"" even when the action was clearly for the other person. That's silly.
+
+Alex: Any features you actively love?
+
+Maya: The transcript search. I cannot tell you how often I'm trying to remember whether a specific customer mentioned a specific feature in some call two months ago. Search across all my Hindsight transcripts and I find it in fifteen seconds. That alone is worth the twenty bucks a month.
+
+Alex: What would you change if you could change one thing?
+
+Maya: The conditional thing. Make the AI smart enough to flag ""this commitment depends on something."" That's the bug.
+
+Alex: And one wish-list feature?
+
+Maya: Honestly, just one more thing I don't have to think about. I'm fourteen different roles in a trench coat. The tool needs to be one less thing I think about, not one more.
+
+Alex: That's a great line. Thanks Maya.
+
+Maya: Anytime.
+","Maya is a high-frequency, multi-context Hindsight user who treats the auto-summary as a fast triage layer she still validates manually on high-stakes calls. Her core pain is not aggregate summary quality, it's a specific systematic miss (conditional commitments). Her favorite feature, transcript search, is the silent retention driver.","1. **Auto-summary as draft, not source of truth.** Maya values speed of delivery but routinely re-validates on consequential calls. The trust ceiling caps the time she actually saves.
+2. **Conditional commitments are systematically lost.** When customers frame asks as ""we'd do X if you can do Y,"" Hindsight captures X and drops Y. Multiple cited examples.
+3. **Notion integration is shallow.** Summary lands in a page, doesn't tag, link, or update existing customer records. Creates copy-paste work.
+4. **Action item attribution is naive.** Default-to-self assignment misfires when the action was clearly on the other party.
+5. **Transcript search is the retention driver.** Single most-loved feature; framed as worth the entire Pro subscription on its own.","- ""Triage decisions from my last several calls so I can act fast without re-listening.""
+- ""Recover what a specific customer told me weeks or months ago.""
+- ""Get action items into Notion without manual rework.""
+- ""Catch high-stakes commitments before I respond to a customer.""","- Maya ""loves"" the summary in aggregate but explicitly doesn't trust it on high-stakes calls. Not a logical contradiction, but a meaningful tension: perceived value is high but conditional. The product team should understand that aggregate NPS may be masking the failure mode that hurts most.","- ""I'm fourteen different roles in a trench coat. The tool needs to be one less thing I think about, not one more.""
+- ""If the AI can't tell me what was decided, I might as well just listen to the recording again.""
+- ""Those conditionals are where all my actual work hides.""","1. **P0 — Detect and flag conditional commitments.** ""We'd do X if Y."" Single biggest unlock for trust on high-stakes calls.
+2. **P1 — Deepen Notion integration.** Tag-based linking to existing customer records, not just summary dump.
+3. **P2 — Smarter action-item attribution.** Detect which party is being committed; don't default to recorder.
+4. **P3 (delight) — Surface ""this commitment has a dependency"" callouts in the Slack summary ping.**"
+02,02_david_enterprise_healthcare.txt,"Hindsight User Interview
+Date: 2026-04-24
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: David Chen, Senior PM, Meriton Health (large health insurer, ~4,000 employees)
+Duration: ~9 min
+
+---
+
+Alex: Hi David, thanks for the time. Can you start by telling me about your role and your team?
+
+David: Sure. I'm a Senior PM at Meriton Health, we're a large health insurer in the Midwest. My team manages provider-facing tools, so think provider portal, claims-status APIs, that kind of thing. Around four thousand people in the company. I have eight engineers and a designer.
+
+Alex: And how are you currently using Hindsight?
+
+David: I'm not, actually. I have a personal Pro account I paid for myself, and I use it for some external meetings, like vendor calls. But I can't use it for any internal meeting that touches PHI, which is most of them. Our compliance team won't let me.
+
+Alex: Why not?
+
+David: Two reasons. First, we don't have a BAA with Hindsight, a Business Associate Agreement. Second, even if we did, Hindsight's data goes through OpenAI and a couple other model providers, and those don't have BAAs either. So for HIPAA purposes, anything I record is potentially a breach. I'd switch tomorrow if we could get the BAA signed.
+
+Alex: So what do you use instead?
+
+David: We have a homegrown thing built on Microsoft Teams transcription plus a hand-rolled summarizer. It's worse than Hindsight in every way except the legal way. The summaries are bad, the action items are non-existent, the search is awful. But it lives entirely inside our Azure tenant and our compliance team blessed it.
+
+Alex: So if Hindsight added BAA support…
+
+David: I'd renew our whole department on Business tier the same day. We're sixty PMs across the org. It would be transformational.
+
+Alex: What features are most important to you, separate from compliance?
+
+David: Honestly, I want less AI, not more. The auto-generated content scares me in our context. If the AI hallucinates an action item and I miss it, that's not just an oops, that could be a regulatory finding. I want raw transcript, good speaker labels, manual highlighting, and a way to pull excerpts. Let me decide what's important. Don't decide for me.
+
+Alex: That's interesting. Most PMs we talk to love the summaries.
+
+David: Yeah, well, most PMs aren't dealing with auditors. The summary thing is fine for a startup where the worst case is forgetting to follow up. For us the worst case is a settlement.
+
+Alex: What about integrations?
+
+David: We use Jira PMO for project tracking. If I could push selected transcript excerpts as Jira comments, that'd be eighty percent of what I need. The current Jira integration dumps the whole summary as a ticket description, which is useless because it's too much text.
+
+Alex: Speaker labels?
+
+David: Need them, need them to be editable, need them to be accurate. We have meetings with twelve people sometimes. Right now Hindsight just picks four names and calls it a day.
+
+Alex: Last question, what's the single biggest blocker?
+
+David: BAA. Everything else is fixable. Without the BAA we can't even start the conversation. I'm not paying for AI features I can't legally turn on.
+
+Alex: Thanks David.
+
+David: Sure.
+","David is a high-affinity Hindsight user who is structurally blocked from using it. The product is technically superior to his current internal alternative, but the absence of a HIPAA BAA makes it legally unusable for ~95% of his work. His feature priorities differ sharply from typical Pro users: he wants less AI-generated content, more raw transcript control, and excerpt-level (not summary-level) integrations.","1. **HIPAA/BAA is a hard gate.** Without a BAA covering Hindsight AND downstream model providers, no PHI-adjacent use case is legally viable.
+2. **Inferior alternative is already in production.** Internal Teams-based summarizer covers the legal requirement but is ""worse in every way except the legal way."" Switching cost would be zero; the legal cost is total.
+3. **Inverted AI preference.** Most Pro users want more AI synthesis; David wants less. Hallucinated action items in healthcare are not ""oops,"" they are potential regulatory findings.
+4. **Speaker labels matter more here than elsewhere.** Meetings with 12+ participants; current 4-name guessing is insufficient.
+5. **Integration depth must be excerpt-level, not summary-level.** Pushing full summaries to Jira ticket bodies is noise; pushing selected transcript excerpts as Jira comments is signal.","- ""Use a best-in-class meeting notes tool without a regulatory violation.""
+- ""Capture what was said with enough fidelity to defend in an audit.""
+- ""Push selected discussion fragments to the project tracker without dumping the whole meeting.""
+- ""Identify speakers correctly when many people are in the room.""","- David pays for Pro personally and uses it for vendor calls, yet won't (can't) use it for anything internal. Reveals a strong PMF shadow: the product wins personal love but loses the org-purchase loop entirely on a single missing artifact (BAA).","- ""I'd switch tomorrow if we could get the BAA signed.""
+- ""Most PMs aren't dealing with auditors.""
+- ""I'm not paying for AI features I can't legally turn on.""
+- ""The worst case is a settlement.""","1. **P0 — Pursue HIPAA BAA.** Highest-leverage single artifact. Locks/unlocks all enterprise health revenue.
+2. **P1 — Build an ""audit mode"" or ""raw-transcript-first"" UX.** Less AI, more manual highlighting, defaults inverted relative to consumer Pro.
+3. **P2 — Editable speaker labels with persistence and large-meeting support (10+ speakers).**
+4. **P3 — Excerpt-to-Jira-comment integration**, not summary-to-ticket-body.
+5. **P4 (strategic) — Investigate whether downstream model providers (OpenAI, Anthropic) offer BAAs**; bake into Business+/Enterprise tier as a guarantee."
+04,04_tomas_devtools_technical.txt,"Hindsight User Interview
+Date: 2026-04-28
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: Tomás Ribeiro, Senior PM, Substrate (managed serverless runtime, dev-tools company)
+Duration: ~11 min
+
+---
+
+Alex: Hi Tomás. Tell me about your work and how Hindsight fits.
+
+Tomás: I'm a Senior PM at Substrate, we build a managed runtime for serverless functions. Think a competitor to AWS Lambda but with much better DX. I run the developer experience pillar, SDKs, CLI, docs. My team is eight engineers, two designers, one DevRel.
+
+Alex: What kinds of meetings does Hindsight see?
+
+Tomás: All of them. Sprint planning, architecture reviews, customer calls with platform teams at our enterprise accounts, internal RFC reviews. I've been on Pro for about a year, just upgraded my whole team to Business last quarter.
+
+Alex: What's the experience been like?
+
+Tomás: Mixed. The summaries are good in shape. The structure is right. But the transcript quality on technical terms is genuinely bad. It transcribed ""Kubernetes"" as ""good Burnett's"" for a month. I noticed when I searched our transcripts for kubernetes-related decisions and found nothing, even though we'd been arguing about it for weeks.
+
+Alex: Did you report it?
+
+Tomás: Yeah. They added a custom-vocabulary feature in the Business tier where you can upload jargon. That helped a lot. ""gRPC"", ""OpenTelemetry"", ""Kubernetes"" all work now. But it's a constant tax. Every time we adopt a new tool I have to remember to add it to the vocabulary list, or it'll be misheard for months.
+
+Alex: What about integrations?
+
+Tomás: Linear integration is the thing I actually care about. When the team says ""let's open a ticket for that,"" I want the action item to become a Linear issue automatically with a link back to the meeting. The current behavior is action item goes to Slack, I copy-paste it into Linear. That's stupid. The data is right there.
+
+Alex: Any features you actively dislike?
+
+Tomás: Sentiment analysis. They added it in Q1, it shows up on every summary. ""Meeting sentiment: cautiously optimistic."" Useless theater. Sentiment analysis on a sprint planning is comedy. We're engineers, we sound annoyed at everything. It doesn't mean anything.
+
+Alex: What about the auto-generated follow-up email feature?
+
+Tomás: Don't trust it. The model doesn't know our context. The drafts always sound like they were written by a sales person who showed up to the wrong meeting. I write my own emails.
+
+Alex: How do you feel about the summary quality on engineering meetings specifically?
+
+Tomás: Decent. It misses architectural follow-ups, like when someone says ""we should revisit this when we move to Postgres 16."" That's a decision that needs a ticket. Hindsight just notes ""team discussed Postgres."" It doesn't see the conditional commitment.
+
+Alex: What would you change?
+
+Tomás: Drop sentiment. Build the Linear integration properly. Auto-detect engineering jargon instead of making me maintain a list.
+
+Alex: One more, what's been most valuable?
+
+Tomás: Honestly, the searchable transcript across all my meetings. We argued about a database choice three months ago. I forgot the argument. I searched, found the meeting, re-read it. Saved me from re-litigating a settled decision.
+
+Alex: Thanks Tomás.
+
+Tomás: Cheers.
+","Tomás is a high-affinity Pro/Business user whose pain points cluster around domain-specific transcription accuracy and the gap between action-item extraction and ticket creation. He values the structure of summaries but identifies a systematic miss on architectural conditional commitments. Most-loved feature: transcript search (consistent with Maya, suggesting a broader retention pattern across personas).","1. **Engineering jargon mis-transcription is a continuous tax.** Custom-vocabulary feature helps but requires constant maintenance as the stack evolves.
+2. **Action-item → ticket gap is unaddressed.** When the team says ""let's open a ticket,"" the action item lands in Slack and needs manual copy-paste into Linear. The data is already present; the integration is missing.
+3. **Architectural conditional commitments are lost.** ""Revisit when we move to Postgres 16"" → summary captures ""team discussed Postgres,"" drops the conditional. Same failure mode as Maya's customer-call conditionals: this is a systemic AI bug, not a domain-specific one.
+4. **Sentiment analysis is unwanted feature noise.** Explicitly flagged as ""useless theater"" in engineering meetings.
+5. **AI-drafted emails don't fit technical contexts.** Lack of domain awareness produces drafts that read as off-key. Tomás writes his own.
+6. **Searchable transcript history is the retention driver.** Mirrors Maya. Used to recover settled decisions and avoid re-litigation.","- ""Capture engineering jargon correctly without manual maintenance.""
+- ""Get action items into Linear automatically with traceability to the meeting.""
+- ""Recover settled technical decisions weeks later to avoid re-arguing them.""
+- ""Skip features that don't help (sentiment, email drafts) without seeing them in my output.""","- Tomás values the *shape* of summaries but is critical of specific AI features within them (sentiment, email drafts). Implicit tension: he wants the AI to be smarter and narrower, not broader. Product team should read this as ""ship fewer, sharper AI features,"" not ""do more AI.""","- ""It transcribed Kubernetes as 'good Burnett's' for a month.""
+- ""Sentiment analysis on a sprint planning is comedy.""
+- ""The drafts always sound like they were written by a sales person who showed up to the wrong meeting.""
+- ""Saved me from re-litigating a settled decision.""","1. **P0 — Build first-class Linear integration.** Auto-create issues from action items, link back to the meeting timestamp.
+2. **P1 — Auto-detect engineering jargon.** Parse repo metadata (package.json, terraform configs, etc.) instead of requiring manual vocab maintenance.
+3. **P2 — Detect architectural conditional commitments.** Same root cause as Maya's customer-call conditionals; one fix benefits both segments.
+4. **P3 — Make sentiment analysis togglable and default-off for meetings tagged ""engineering.""**
+5. **P4 (strategic) — Improve AI-draft emails with context (linked Linear/GitHub issues, prior thread)** or remove the feature for technical workspaces."

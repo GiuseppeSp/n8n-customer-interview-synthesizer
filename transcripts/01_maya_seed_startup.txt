@@ -1,0 +1,51 @@
+Hindsight User Interview
+Date: 2026-04-22
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: Maya Khan, Head of Product, Riverbend (Series Seed fintech, 4 people)
+Duration: ~12 min
+
+---
+
+Alex: Hi Maya, thanks for taking the time today. Can you give me a quick sense of what your week looks like and where Hindsight fits in?
+
+Maya: Sure. So I'm at Riverbend, we're four people total. I'm Head of Product but honestly I'm fourteen different roles in a trench coat. In a given week I'm doing two or three customer calls, one or two investor or partnership conversations, and then a bunch of internal stuff with the engineers. I use Hindsight on basically all of them. Started maybe six months ago when I realized I was forgetting what people told me by the end of the week.
+
+Alex: And what made you pick Hindsight specifically?
+
+Maya: Honestly, the free tier. We're seed-stage, every twenty dollars matters. Hindsight gave me five meetings a month for free, I tried it for two weeks, and after I forgot to take notes in one call and the auto-summary actually rescued me, I bought the Pro tier the same day.
+
+Alex: Got it. What does a typical use look like?
+
+Maya: Recording's on, I just talk. When the meeting ends I get a Slack ping like ten minutes later with the summary and action items. I usually skim it, copy the action items into Notion, and move on with my day. Maybe once a week I'll go back and search the transcript for something specific a customer said.
+
+Alex: How would you describe the quality of the summary?
+
+Maya: Eighty percent it's great. The structure is exactly what I want, decisions up top, action items at the bottom. But there's like a twenty percent where it just misses things. Like if a customer says "if we end up doing X, then we'd probably need Y from you," it'll capture the X but miss that there's a conditional follow-up. And those conditionals are where all my actual work hides.
+
+Alex: Can you give me a recent example?
+
+Maya: Yeah, two weeks ago. Customer call. They said something like "we'd love to pilot this, but it would only make sense if you can do the SOC 2 stuff by end of Q3." Hindsight captured "customer wants to pilot." Did not capture the SOC 2 dependency. I almost emailed back saying "great, let's start" without realizing I'd just committed us to SOC 2 by September. Caught it because I happened to re-listen.
+
+Alex: Yikes. How do you work around that?
+
+Maya: I don't, really. I just don't fully trust the summaries on consequential calls anymore. Which kind of defeats the point. If the AI can't tell me what was decided, I might as well just listen to the recording again. So now I treat it as a draft I have to validate, which is faster than no notes but not as fast as I'd like.
+
+Alex: What other things bug you?
+
+Maya: The Notion integration is half-built. It dumps the summary into a page but doesn't tag, doesn't link to my customer database, doesn't update an existing customer record. So I'm copy-pasting a lot. Also, action items default to "assigned to me" even when the action was clearly for the other person. That's silly.
+
+Alex: Any features you actively love?
+
+Maya: The transcript search. I cannot tell you how often I'm trying to remember whether a specific customer mentioned a specific feature in some call two months ago. Search across all my Hindsight transcripts and I find it in fifteen seconds. That alone is worth the twenty bucks a month.
+
+Alex: What would you change if you could change one thing?
+
+Maya: The conditional thing. Make the AI smart enough to flag "this commitment depends on something." That's the bug.
+
+Alex: And one wish-list feature?
+
+Maya: Honestly, just one more thing I don't have to think about. I'm fourteen different roles in a trench coat. The tool needs to be one less thing I think about, not one more.
+
+Alex: That's a great line. Thanks Maya.
+
+Maya: Anytime.

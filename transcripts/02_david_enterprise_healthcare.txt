@@ -1,0 +1,51 @@
+Hindsight User Interview
+Date: 2026-04-24
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: David Chen, Senior PM, Meriton Health (large health insurer, ~4,000 employees)
+Duration: ~9 min
+
+---
+
+Alex: Hi David, thanks for the time. Can you start by telling me about your role and your team?
+
+David: Sure. I'm a Senior PM at Meriton Health, we're a large health insurer in the Midwest. My team manages provider-facing tools, so think provider portal, claims-status APIs, that kind of thing. Around four thousand people in the company. I have eight engineers and a designer.
+
+Alex: And how are you currently using Hindsight?
+
+David: I'm not, actually. I have a personal Pro account I paid for myself, and I use it for some external meetings, like vendor calls. But I can't use it for any internal meeting that touches PHI, which is most of them. Our compliance team won't let me.
+
+Alex: Why not?
+
+David: Two reasons. First, we don't have a BAA with Hindsight, a Business Associate Agreement. Second, even if we did, Hindsight's data goes through OpenAI and a couple other model providers, and those don't have BAAs either. So for HIPAA purposes, anything I record is potentially a breach. I'd switch tomorrow if we could get the BAA signed.
+
+Alex: So what do you use instead?
+
+David: We have a homegrown thing built on Microsoft Teams transcription plus a hand-rolled summarizer. It's worse than Hindsight in every way except the legal way. The summaries are bad, the action items are non-existent, the search is awful. But it lives entirely inside our Azure tenant and our compliance team blessed it.
+
+Alex: So if Hindsight added BAA support…
+
+David: I'd renew our whole department on Business tier the same day. We're sixty PMs across the org. It would be transformational.
+
+Alex: What features are most important to you, separate from compliance?
+
+David: Honestly, I want less AI, not more. The auto-generated content scares me in our context. If the AI hallucinates an action item and I miss it, that's not just an oops, that could be a regulatory finding. I want raw transcript, good speaker labels, manual highlighting, and a way to pull excerpts. Let me decide what's important. Don't decide for me.
+
+Alex: That's interesting. Most PMs we talk to love the summaries.
+
+David: Yeah, well, most PMs aren't dealing with auditors. The summary thing is fine for a startup where the worst case is forgetting to follow up. For us the worst case is a settlement.
+
+Alex: What about integrations?
+
+David: We use Jira PMO for project tracking. If I could push selected transcript excerpts as Jira comments, that'd be eighty percent of what I need. The current Jira integration dumps the whole summary as a ticket description, which is useless because it's too much text.
+
+Alex: Speaker labels?
+
+David: Need them, need them to be editable, need them to be accurate. We have meetings with twelve people sometimes. Right now Hindsight just picks four names and calls it a day.
+
+Alex: Last question, what's the single biggest blocker?
+
+David: BAA. Everything else is fixable. Without the BAA we can't even start the conversation. I'm not paying for AI features I can't legally turn on.
+
+Alex: Thanks David.
+
+David: Sure.

@@ -1,0 +1,47 @@
+Hindsight User Interview
+Date: 2026-04-26
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: Priya Nair, Senior PM, PaceFox (consumer running and triathlon app, ~2M users)
+Duration: ~10 min
+
+---
+
+Alex: Hi Priya, thanks for the time. Tell me about your role and how you use Hindsight.
+
+Priya: Sure. I'm a senior PM at PaceFox, we make a running and triathlon-training app. About two million users. I lead our race-day experience squad. The thing that's relevant for this conversation is that I do a lot of user research. Probably six to ten user interviews a week.
+
+Alex: And Hindsight is for those?
+
+Priya: Yeah, exclusively. I don't use it for internal meetings. For those I take handwritten notes, old habit. But for user interviews I record everything with permission.
+
+Alex: How's it working for that use case?
+
+Priya: The transcript itself is good. The search across past interviews is amazing, actually. But the summaries, I actually turn them off when I can. They kill nuance. In a user interview, the nuance IS the insight. If a user pauses for three seconds before saying they "kind of like" a feature, that hesitation is the whole signal. The summary just says "user likes feature." That's exactly wrong.
+
+Alex: So summaries are bad for your context. Got it. What about other features?
+
+Priya: Speaker labels would be huge if they worked. Right now Hindsight gives me labels but they're often wrong, and there's no way to edit them. So if I have a transcript with three speakers it's just guesswork which is which.
+
+Alex: What do you wish for?
+
+Priya: Two things. One, a way to manually correct speaker labels and have those corrections persist across the rest of the transcript. Two, timestamped hyperlinks. If I quote a user in a research deck, I want to click the quote and jump to that moment in the recording. Right now I'm screenshotting transcripts and that's medieval.
+
+Alex: Anything else?
+
+Priya: Tagging. We have research themes, onboarding, motivation, social, and I'd love to tag interview segments with themes, then later pull all segments tagged "motivation" across six months of interviews. Right now I literally maintain a spreadsheet by hand. It's painful.
+
+Alex: How important is action item extraction for you?
+
+Priya: It's basically irrelevant. User interviews don't have action items. The whole feature is wasted on me.
+
+Alex: How do you feel about the AI-drafted follow-up email feature?
+
+Priya: I don't use it. I send a personal thank-you email after every interview, two lines, written by me. The AI version sounds like a sales person who showed up to the wrong meeting. I'd rather take the thirty seconds.
+
+Alex: Last question. What would make you upgrade to Business tier?
+
+Priya: Team-shared interview library. Right now my Hindsight is just mine. My UXR teammates can't see my interviews and vice versa. If we could pool them and search across the whole team's interview library, I'd push for that on day one.
+
+Alex: Thanks Priya.
+
+Priya: Of course.

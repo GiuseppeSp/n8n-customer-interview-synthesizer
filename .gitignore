@@ -1,0 +1,26 @@
+# Claude Code internals (contain private project context)
+CLAUDE.md
+.claude/
+.token-usage.csv
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Env files (defensive — no .env should ever land here)
+.env
+.env.*
+*.env
+
+# Python (defensive, if we ever add scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/

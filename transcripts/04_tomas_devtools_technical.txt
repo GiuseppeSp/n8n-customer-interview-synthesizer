@@ -1,0 +1,51 @@
+Hindsight User Interview
+Date: 2026-04-28
+Interviewer: Alex (UX Researcher, Hindsight)
+Participant: Tomás Ribeiro, Senior PM, Substrate (managed serverless runtime, dev-tools company)
+Duration: ~11 min
+
+---
+
+Alex: Hi Tomás. Tell me about your work and how Hindsight fits.
+
+Tomás: I'm a Senior PM at Substrate, we build a managed runtime for serverless functions. Think a competitor to AWS Lambda but with much better DX. I run the developer experience pillar, SDKs, CLI, docs. My team is eight engineers, two designers, one DevRel.
+
+Alex: What kinds of meetings does Hindsight see?
+
+Tomás: All of them. Sprint planning, architecture reviews, customer calls with platform teams at our enterprise accounts, internal RFC reviews. I've been on Pro for about a year, just upgraded my whole team to Business last quarter.
+
+Alex: What's the experience been like?
+
+Tomás: Mixed. The summaries are good in shape. The structure is right. But the transcript quality on technical terms is genuinely bad. It transcribed "Kubernetes" as "good Burnett's" for a month. I noticed when I searched our transcripts for kubernetes-related decisions and found nothing, even though we'd been arguing about it for weeks.
+
+Alex: Did you report it?
+
+Tomás: Yeah. They added a custom-vocabulary feature in the Business tier where you can upload jargon. That helped a lot. "gRPC", "OpenTelemetry", "Kubernetes" all work now. But it's a constant tax. Every time we adopt a new tool I have to remember to add it to the vocabulary list, or it'll be misheard for months.
+
+Alex: What about integrations?
+
+Tomás: Linear integration is the thing I actually care about. When the team says "let's open a ticket for that," I want the action item to become a Linear issue automatically with a link back to the meeting. The current behavior is action item goes to Slack, I copy-paste it into Linear. That's stupid. The data is right there.
+
+Alex: Any features you actively dislike?
+
+Tomás: Sentiment analysis. They added it in Q1, it shows up on every summary. "Meeting sentiment: cautiously optimistic." Useless theater. Sentiment analysis on a sprint planning is comedy. We're engineers, we sound annoyed at everything. It doesn't mean anything.
+
+Alex: What about the auto-generated follow-up email feature?
+
+Tomás: Don't trust it. The model doesn't know our context. The drafts always sound like they were written by a sales person who showed up to the wrong meeting. I write my own emails.
+
+Alex: How do you feel about the summary quality on engineering meetings specifically?
+
+Tomás: Decent. It misses architectural follow-ups, like when someone says "we should revisit this when we move to Postgres 16." That's a decision that needs a ticket. Hindsight just notes "team discussed Postgres." It doesn't see the conditional commitment.
+
+Alex: What would you change?
+
+Tomás: Drop sentiment. Build the Linear integration properly. Auto-detect engineering jargon instead of making me maintain a list.
+
+Alex: One more, what's been most valuable?
+
+Tomás: Honestly, the searchable transcript across all my meetings. We argued about a database choice three months ago. I forgot the argument. I searched, found the meeting, re-read it. Saved me from re-litigating a settled decision.
+
+Alex: Thanks Tomás.
+
+Tomás: Cheers.
