@@ -27,7 +27,7 @@ The product is a customer-interview synthesis pipeline. The artifact differentia
 | 5b | Synthesizer v2 (SHADOW) | Prompt B. Graded but doesn't ship. |
 | 6 | LLM-as-Judge | Scores synthesizer output vs golden-set rubric |
 | 7 | Decision (IF node) | Score >= threshold? |
-| 8a | Save + log (Yes) | Persist report, log full trace to Langfuse |
+| 8a | Save + log (Yes) | Persist report, log full trace to LangWatch |
 | 8b | HITL Wait (No) | Pause workflow |
 | 9 | Slack approve/reject | Resume workflow on click |
 
@@ -67,7 +67,7 @@ https://www.figma.com/board/dRU9fDpnG3i6VO5WpDxQ7H
 | Judge | Claude Sonnet 4.6 | Pay per token |
 | Storage / golden set | Google Sheets | Free |
 | HITL | Slack | Free tier |
-| Observability | Langfuse free tier | 50k observations/mo |
+| Observability | LangWatch free tier | 50k observations/mo |
 | Diagrams | FigJam | Free |
 
 Estimated total LLM spend across the full build: under $30. Drift monitor adds ~$0.50/week.
@@ -117,18 +117,45 @@ Sequential. Don't skip ahead. Screenshot at the end of each phase.
 - [x] Build blocks 8b + 9 (HITL Wait + Slack approve/reject). n8n's "Slack > Send and Wait for Response" node with Approval response type. Channel: #hindsight-approvals. End-to-end tested: workflow paused on Slack node, message rendered cleanly with score breakdown and judge reasoning, Approve click resumed workflow.
 - [x] Build block 8a (save + log path). Two `Google Sheets > Append Row` nodes: "Save (human-approved)" on Slack approve branch, "Save (auto-approved)" on Score Gate True branch. Both write to "Hindsight Synthesis Results" sheet (URL: https://docs.google.com/spreadsheets/d/1OyCoGAFBybvh2bKEYreLEpFFYvDejjj2BiLk5_8Z6gg/edit?gid=0#gid=0). Tested end-to-end: Maya's run scored 4 → Slack HITL → click Approve → row appended to results sheet with all 5 columns populated. (Auto-approved path not yet exercised with a real transcript that scores ≥ 7; will validate in a later run.)
 
-### Phase 4: Add shadow A/B
-- [ ] Duplicate synthesizer node as 5b with prompt variant
-- [ ] Route both into judge
-- [ ] Log v1 vs v2 score deltas to Sheets
+### Phase 4: Add shadow A/B (DONE 2026-05-18)
+- [x] Duplicate synthesizer node as Synthesizer v2 (shadow) with stricter prioritization rules (explicit "at most 1-2 P0, at least one P3" instructions, hard-coded "if you can't find a P3, you haven't synthesized hard enough" guidance)
+- [x] Added Judge v2 (shadow), routed both v1 → Judge and v2 → Judge v2 in parallel from Merge Worker Outputs
+- [x] Added Save Shadow Score node (logs v2 score with approval_path="shadow" to the same Hindsight Synthesis Results sheet)
+- [x] End-to-end test on Maya transcript
 
-### Phase 5: Drift monitor workflow
-- [ ] New workflow with Cron trigger
-- [ ] Wire blocks 11-14
-- [ ] Test with a manually-degraded prompt to confirm alerting fires
+**Real finding from the A/B test (worth surfacing in the writeup):**
+| Score | v1 (live) | v2 (shadow) |
+|---|---|---|
+| overall_score | ~4-5 | ~5 |
+| coverage | ~5-6 | 6 |
+| prioritization | ~3-4 | 4 |
+
+Prompt change moved the needle but barely. Judge specifically noted "recommendations are not consistently ranked in priority levels" even for v2 → marginal prompt tweaks weren't enough to fix the P0-spread issue. This is exactly the kind of finding the eval/shadow loop is supposed to produce: it caught that the candidate isn't yet meaningfully better than the live, so we WOULDN'T promote it.
+
+Future v3 candidates worth trying: (a) structured output enforcement via JSON schema with priority enum + minOccurrences constraints, (b) few-shot examples showing a "good" priority spread, (c) different model (gpt-4o, claude-sonnet) for the synthesizer with same prompt.
+
+**n8n quirk noted:** `Send and Wait for Response` node appears to pause the ENTIRE workflow including parallel branches, so Synthesizer v2 / Judge v2 / Save Shadow Score effectively run AFTER the human clicks Approve, not truly in parallel with v1's path. Functionally fine, but breaks the "shadow runs at same time as live" mental model. For real production this would matter for latency; for our portfolio it's a documentable observation, not a blocker.
+
+### Phase 5: Drift monitor workflow (DONE 2026-05-18)
+- [x] New workflow with Cron trigger ("Hindsight Drift Monitor", Schedule Trigger set to daily 9am, fires on manual Execute for testing)
+- [x] Wire blocks 11-14:
+  - Get rows in sheet (read Maya, transcript_id=1)
+  - Drift Synthesizer (single-pass LLM Chain, gpt-4o-mini, themes + JTBDs + contradictions + quotes + recommendations in one prompt)
+  - Drift Judge (same rubric as main workflow Judge, scores against the golden reference)
+  - Save Drift Score (Google Sheets append, approval_path="drift_check", logs every run)
+  - Drift Detected? (IF score < 5 for production; tested with threshold=7 to verify the alert path)
+  - Slack Drift Alert (post message to #hindsight-approvals on True branch)
+- [x] Tested end-to-end: Drift Synthesizer scored 6/10, alert fired correctly when threshold was 7, no alert when threshold is 5.
+
+**Architectural deviations from original plan (documented honestly):**
+- Drift monitor uses a single-pass synthesizer instead of the full multi-agent pipeline. This is a deliberate v1 simplification: drift monitoring needs to be cheap and fast, not necessarily replicate the entire production path. A v2 enhancement would use n8n's `Execute Workflow` node to call the main pipeline.
+- Threshold is hardcoded (5). v2 enhancement: compare to a rolling baseline from the drift_history rows in the results sheet, alert if current score drops >2 standard deviations below mean.
+
+**Real finding worth surfacing in writeup:**
+The single-pass drift synthesizer (one LLM call doing everything) scored HIGHER than the main pipeline's multi-agent synthesizer (Drift score 6 vs main v1 score 4-5). This is a genuine architectural finding: the multi-agent decomposition is not strictly better than a single well-prompted call, especially when the single call includes strict prioritization rules. Worth investigating whether the multi-agent pipeline justifies its cost vs a single LLM call.
 
 ### Phase 6: Polish and document
-- [ ] Add Langfuse traces to all LLM nodes
+- [ ] Add LangWatch traces to all LLM nodes
 - [ ] Take rich screenshots of canvas, executions, judge scores, drift alerts
 - [ ] Write architectural-decision notes (one per non-obvious choice)
 - [ ] Document limitations honestly (what's mocked, what's brittle, what would break in prod)
@@ -139,12 +166,24 @@ Sequential. Don't skip ahead. Screenshot at the end of each phase.
 
 - Which LLM provider for the workers? (Groq free Llama vs Claude Haiku 4.5 vs OpenAI GPT-4o-mini)
 - How to format the judge rubric in Sheets? (per-criterion columns vs single JSON cell)
-- Where to store score history for drift baseline? (Sheets vs Langfuse vs both)
+- Where to store score history for drift baseline? (Sheets vs LangWatch vs both)
 - Worth doing per-worker drift monitoring in v2? (more diagnostic power, more setup)
 
 ---
 
 ## Session log
+
+### 2026-05-18 (session 3)
+- Hit Gemini free-tier daily quota (20 RPD); pivoted all LLM nodes to OpenAI gpt-4o-mini
+- Solved the multi-input race condition by adopting n8n Merge node as a sync barrier (Code node has no wait-for-all-inputs semantic; only Merge does)
+- Phase 3 COMPLETED: judge + score gate + Slack HITL approval (Send and Wait for Response, Approve/Reject buttons) + Save (auto-approved) + Save (human-approved). End-to-end tested on Maya's transcript: judge scored 4/10, routed to False, Slack pinged, click Approve, row appended to results sheet.
+- Phase 4 COMPLETED: shadow A/B synthesizer. Synthesizer v2 with stricter prioritization rules runs in parallel with v1. Judge v2 scores v2 output. Save Shadow Score logs to results sheet with approval_path="shadow". Real finding: prompt change moved prioritization score from ~3-4 → 4 only (marginal). Shadow A/B correctly caught that v2 isn't meaningfully better than v1.
+- Phase 5 COMPLETED: drift monitor workflow. Schedule Trigger → Get rows (Maya golden) → Drift Synthesizer (single-pass) → Drift Judge → Save Drift Score → Drift Detected? IF (score < 5) → Slack Drift Alert. Tested with threshold=7 to fire alert, then lowered to 5 for production behavior.
+- Real finding from Phase 5: single-pass drift synthesizer scored 6/10 vs main multi-agent v1 at 4-5/10. The simpler architecture outperformed the complex one on the rubric. Documented as a candidate insight for the writeup.
+- Phase 6 partial: pushed Git repo (https://github.com/GiuseppeSp/n8n-customer-interview-synthesizer) as public, added profile-table entry, expanded README to full case study, swapped Langfuse references → LangWatch (consistent with Cookbook RAG project).
+- 7 portfolio screenshots captured (HITL message + canvas states + drift alert + drift monitor canvas).
+- Decision logged: em dashes are allowed in this project's artifacts (override of global CLAUDE.md style rule).
+- Next session: commit + push the Phase 4/5/6 changes, then the build is shippable.
 
 ### 2026-05-17 (session 2)
 - Locked Option A architecture
@@ -153,7 +192,9 @@ Sequential. Don't skip ahead. Screenshot at the end of each phase.
 - Created this BUILD-LOG
 - Phase 0 DONE: n8n Cloud signup, hello-world workflow (Manual Trigger → Basic LLM Chain → Gemini)
 - Phase 1 DONE: 5 synthetic transcripts written, 3 golden references drafted, CSV generated, Google Sheet imported and live.
-- Next session: Phase 2 (build main workflow blocks 1-5a end-to-end on a single transcript)
+- Phase 2 DONE: Main workflow happy path, 4 parallel workers + Merge + Synthesizer v1, tested end-to-end on Maya.
+- Initial Git push to GitHub (https://github.com/GiuseppeSp/n8n-customer-interview-synthesizer).
+- Next session: Phase 3 (judge + HITL + save path)
 
 ### 2026-05-16 (session 1)
 - Researched the n8n AI build landscape
